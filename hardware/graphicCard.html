@@ -2,7 +2,7 @@
 title: 显卡
 description: 显卡选择
 published: true
-date: 2025-10-12T05:37:56.216Z
+date: 2025-10-12T05:43:29.816Z
 tags: 
 editor: ckeditor
 dateCreated: 2025-10-12T05:27:01.543Z
@@ -202,6 +202,164 @@ dateCreated: 2025-10-12T05:27:01.543Z
 </figure>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
+<h1><strong>消费级（GeForce，游戏/创作）</strong></h1>
+<figure class="table">
+  <table>
+    <tbody>
+      <tr>
+        <td><strong>RTX 5090</strong></td>
+        <td>Blackwell</td>
+        <td><strong>21,760</strong></td>
+        <td><strong>2.41 GHz</strong></td>
+        <td><strong>32 GB GDDR7</strong>（官方未标带宽）</td>
+        <td>4th RT / 5th Tensor</td>
+        <td>–</td>
+        <td>2025</td>
+      </tr>
+      <tr>
+        <td><strong>RTX 5080</strong></td>
+        <td>Blackwell</td>
+        <td>–（官方未列明）</td>
+        <td>–</td>
+        <td><strong>16 GB GDDR7，~960 GB/s</strong></td>
+        <td>4th RT / 5th Tensor</td>
+        <td>–</td>
+        <td>2025</td>
+      </tr>
+      <tr>
+        <td><strong>RTX 4090</strong></td>
+        <td>Ada Lovelace</td>
+        <td>16,384</td>
+        <td>2.52–2.61 GHz（厂商不同）</td>
+        <td><strong>24 GB GDDR6X</strong></td>
+        <td>3rd RT / 4th Tensor</td>
+        <td>~450 W</td>
+        <td>2022</td>
+      </tr>
+      <tr>
+        <td><strong>RTX 4080 SUPER</strong></td>
+        <td>Ada Lovelace</td>
+        <td>10,240</td>
+        <td>2.55 GHz</td>
+        <td><strong>16 GB GDDR6X</strong></td>
+        <td>3rd RT / 4th Tensor</td>
+        <td>320 W</td>
+        <td>2024</td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h1><strong>工作站 / 企业可视化（RTX / L 系）</strong></h1>
+<figure class="table">
+  <table>
+    <thead>
+      <tr>
+        <th><strong>型号</strong></th>
+        <th><strong>架构</strong></th>
+        <th><strong>CUDA 核心</strong></th>
+        <th><strong>显存</strong></th>
+        <th><strong>带宽</strong></th>
+        <th><strong>张量/RT</strong></th>
+        <th><strong>TDP</strong></th>
+        <th><strong>备注</strong></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>RTX 6000 Ada</strong></td>
+        <td>Ada</td>
+        <td>18,176</td>
+        <td><strong>48 GB GDDR6 ECC</strong></td>
+        <td>~960 GB/s</td>
+        <td>4th/3rd</td>
+        <td>300 W</td>
+        <td>桌面工作站旗舰</td>
+      </tr>
+      <tr>
+        <td><strong>L40S</strong></td>
+        <td>Ada</td>
+        <td>14,592</td>
+        <td><strong>48 GB GDDR6</strong></td>
+        <td>864 GB/s（官方页给出吞吐/规格）</td>
+        <td>4th/3rd</td>
+        <td>350 W</td>
+        <td>数据中心可视化/推理</td>
+      </tr>
+      <tr>
+        <td><strong>L4</strong></td>
+        <td>Ada</td>
+        <td>7,424</td>
+        <td><strong>24 GB GDDR6</strong></td>
+        <td>300 GB/s</td>
+        <td>4th/3rd</td>
+        <td>72 W</td>
+        <td>低功耗推理/转码</td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h1><strong>数据中心 AI 加速卡（A / H / B / GB 系）</strong></h1>
+<figure class="table">
+  <table>
+    <thead>
+      <tr>
+        <th><strong>型号</strong></th>
+        <th><strong>架构</strong></th>
+        <th><strong>HBM 容量/类型</strong></th>
+        <th><strong>内存带宽</strong></th>
+        <th><strong>代表规格</strong></th>
+        <th><strong>形态</strong></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>A100</strong></td>
+        <td>Ampere</td>
+        <td>40/80 GB HBM2e</td>
+        <td>1.6–2.0 TB/s</td>
+        <td>FP16/TF32 张量核；多实例 GPU（MIG）</td>
+        <td>PCIe / SXM</td>
+      </tr>
+      <tr>
+        <td><strong>H100</strong></td>
+        <td>Hopper</td>
+        <td>80 GB HBM3</td>
+        <td><strong>3.0+ TB/s</strong></td>
+        <td>Transformer Engine，FP8/FP16</td>
+        <td>PCIe / SXM</td>
+      </tr>
+      <tr>
+        <td><strong>H200</strong></td>
+        <td>Hopper</td>
+        <td><strong>141 GB HBM3e</strong></td>
+        <td><strong>4.8 TB/s</strong></td>
+        <td>H100 升级版，带宽和容量大幅提升</td>
+        <td>PCIe / SXM</td>
+      </tr>
+      <tr>
+        <td><strong>B200</strong></td>
+        <td>Blackwell</td>
+        <td><strong>最多 192 GB HBM3e</strong></td>
+        <td><strong>8+ TB/s</strong>（官方给出等级）</td>
+        <td>第五代 Tensor、2×Hopper 级性能</td>
+        <td>PCIe / SXM</td>
+      </tr>
+      <tr>
+        <td><strong>GB200</strong>（Grace-Blackwell）</td>
+        <td>Blackwell + Grace CPU</td>
+        <td><strong>与 B200 组合</strong></td>
+        <td><strong>&gt;10 TB/s 互联总带宽</strong></td>
+        <td>CPU-GPU 超融合（NVLink-C2C）</td>
+        <td>机箱/机柜级模块</td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
