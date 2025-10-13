@@ -1,45 +1,121 @@
 <!--
-title: AI leanring
+title: AI try2
 description: 
 published: true
-date: 2025-10-13T08:10:03.595Z
+date: 2025-10-13T08:30:24.462Z
 tags: 
 editor: ckeditor
 dateCreated: 2025-10-13T03:47:41.888Z
 -->
 
-<p>Ai</p>
 <p>&nbsp;</p>
-<p>Huggning face 对应关系</p>
+<p>Stable diffusion 部署在 ComfyUI上</p>
+<hr>
+<pre><code class="language-html">ComfyUI/
+└── models/
+    ├── checkpoints/
+    │   └── sd3.5_large.safetensors
+    ├── clip/
+    │   ├── sd3.5_t5xxl/
+    │   │   ├── config.json
+    │   │   ├── model.fp16-00001-of-00002.safetensors
+    │   │   ├── model.fp16-00002-of-00002.safetensors
+    │   │   └── model.safetensors.index.fp16.json
+    │   └── sd3.5_clip_l/
+    │       ├── config.json
+    │       ├── model.fp16-00001-of-00002.safetensors
+    │       ├── model.fp16-00002-of-00002.safetensors
+    │       └── model.safetensors.index.fp16.json
+    └── vae/
+        ├── config.json
+        └── diffusion_pytorch_model.safetensors        '</code></pre>
+<p>文件结构比较复杂</p>
+<p>主要几个</p>
 <figure class="table">
   <table>
     <thead>
       <tr>
-        <th><strong>模块名称（ComfyUI 节点里）</strong></th>
-        <th><strong>模型文件名（通常）</strong></th>
-        <th><strong>模型类型</strong></th>
-        <th><strong>作用</strong></th>
+        <th><strong>模块</strong></th>
+        <th><strong>文件夹名</strong></th>
+        <th><strong>实际模型类型</strong></th>
+        <th><strong>说明</strong></th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <td><strong>clip_l</strong></td>
-        <td>text_encoder_3/model.fp16-00001-of-00002.safetensors</td>
-        <td><strong>CLIP-L</strong></td>
-        <td>负责<strong>局部语义</strong>理解（细节、修饰、视觉属性）</td>
+        <td><strong>主扩散模型</strong></td>
+        <td>sd3.5_large.safetensors</td>
+        <td>Diffusion Transformer</td>
+        <td>负责生成图像</td>
       </tr>
       <tr>
-        <td><strong>clip_g</strong></td>
-        <td>text_encoder_2/model.fp16.safetensors</td>
-        <td><strong>CLIP-G</strong></td>
-        <td>负责<strong>全局语义</strong>理解（主体、场景、动作）</td>
+        <td><strong>T5-XXL 文本编码器</strong></td>
+        <td>text_encoder + text_encoder_2</td>
+        <td>T5-XXL</td>
+        <td>把自然语言 prompt 转换成向量（大语言模型）</td>
       </tr>
       <tr>
-        <td><strong>t5xxl</strong></td>
-        <td>text_encoder/model.fp16stable-diffusion-3.5-large_text_encode.safetensors</td>
-        <td><strong>T5-XXL</strong></td>
-        <td>负责<strong>长文本与复杂逻辑描述</strong>理解（如“穿着蓝色外套、站在夕阳下”）</td>
+        <td><strong>CLIP-L 文本编码器</strong></td>
+        <td>text_encoder_3</td>
+        <td>CLIP-L</td>
+        <td>用于视觉语义对齐</td>
+      </tr>
+      <tr>
+        <td><strong>VAE</strong></td>
+        <td>vae/</td>
+        <td>VAE 解码器</td>
+        <td>把潜空间转为真实图片</td>
       </tr>
     </tbody>
   </table>
 </figure>
+<p>需要下载的文件夹 hugging face</p>
+<figure class="table">
+  <table>
+    <thead>
+      <tr>
+        <th><strong>文件夹</strong></th>
+        <th><strong>下载内容</strong></th>
+        <th><strong>放置路径</strong></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>text_encoder/</td>
+        <td>全部 4 个文件</td>
+        <td>models/clip/sd3.5_t5xxl/text_encoder/</td>
+      </tr>
+      <tr>
+        <td>text_encoder_2/</td>
+        <td>全部 4 个文件</td>
+        <td>models/clip/sd3.5_t5xxl/text_encoder_2/</td>
+      </tr>
+      <tr>
+        <td>text_encoder_3/</td>
+        <td>全部 4 个文件</td>
+        <td>models/clip/sd3.5_clip_l/</td>
+      </tr>
+      <tr>
+        <td>vae/</td>
+        <td>2 个文件</td>
+        <td>models/vae/</td>
+      </tr>
+      <tr>
+        <td>sd3.5_large.safetensors</td>
+        <td>1 个文件</td>
+        <td>models/checkpoints/</td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
