@@ -1,0 +1,24 @@
+<!--
+title: n8n
+description: 
+published: true
+date: 2025-10-13T12:41:25.890Z
+tags: 
+editor: ckeditor
+dateCreated: 2025-10-13T12:41:25.890Z
+-->
+
+<p>n8n 发送邮件 预约系统</p>
+<pre><code class="language-typescript">{{ `
+--------------------------------------
+${$json.To}
+📩 New appointment email
+${$json.Subject}
+
+${$json.snippet.replace(/ *[•·]+ */g, '\n').replace(/\. /g, '.\n')}
+--------------------------------------
+Sent automatically by n8n.berstra
+--------------------------------------
+${String.fromCharCode(8203)}  #空格显示，之前尝试过\n/n&lt;br&gt;都不行
+
+` }}</code></pre>
