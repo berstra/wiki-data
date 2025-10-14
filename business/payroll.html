@@ -2,7 +2,7 @@
 title: 工资发放payroll
 description: 
 published: true
-date: 2025-10-14T04:09:17.079Z
+date: 2025-10-14T04:27:08.346Z
 tags: 
 editor: ckeditor
 dateCreated: 2025-10-14T03:33:37.369Z
@@ -371,6 +371,143 @@ dateCreated: 2025-10-14T03:33:37.369Z
     </tbody>
   </table>
 </figure>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h1><strong>自动化分析（你能怎么 n8n 自动化）两种工资体系对比：ERPNext + GovReports + Beam vs Xero</strong></h1>
+<figure class="table">
+  <table>
+    <thead>
+      <tr>
+        <th><strong>模块</strong></th>
+        <th><strong>ERPNext + GovReports + Beam</strong></th>
+        <th><strong>Xero Payroll</strong></th>
+        <th><strong>对比结论</strong></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>💰 工资计算 (Payroll Calculation)</td>
+        <td>ERPNext 自动计算，逻辑完全可控（自定义 Salary Structure / Tax Formula）</td>
+        <td>Xero 自动计算（不可自定义深层逻辑）</td>
+        <td>ERPNext 更灵活，Xero 更简单</td>
+      </tr>
+      <tr>
+        <td>🧾 STP 上报 (ATO Reporting)</td>
+        <td>需导出 CSV 上传到 GovReports（或用 n8n 自动上传）</td>
+        <td>内置 STP，一键提交</td>
+        <td>Xero 简单，但 ERPNext+n8n 可完全自动化</td>
+      </tr>
+      <tr>
+        <td>🏦 工资支付 (Wage Payment)</td>
+        <td>ERPNext 导出 .ABA 文件 → 银行批量发</td>
+        <td>Xero 也导出 .ABA</td>
+        <td>基本相同</td>
+      </tr>
+      <tr>
+        <td>🏛️ PAYG 缴纳</td>
+        <td>ERPNext 汇总 → GovReports / ATO Portal 手动付款</td>
+        <td>Xero 自动计算并生成 BAS（但付款仍需人工确认）</td>
+        <td>本质都需人工点击“确认付款”</td>
+      </tr>
+      <tr>
+        <td>🏦 养老金 (Super)</td>
+        <td>Beam 自动从公司账户扣款并分发</td>
+        <td>Xero 内置 Super Clearing（使用 Beam 或 ClickSuper）</td>
+        <td>一样的清算机制</td>
+      </tr>
+      <tr>
+        <td>🧮 会计账整合</td>
+        <td>ERPNext 可通过 n8n / API 同步到 Xero / Odoo</td>
+        <td>Xero 内建总账 / 报表</td>
+        <td>Xero 内置更方便，但 ERPNext 可自控</td>
+      </tr>
+      <tr>
+        <td>⚙️ 自动化潜力</td>
+        <td>非常高，可自定义 API、Webhook、自动报表、自动备份</td>
+        <td>有限，主要依赖 Xero 自带功能</td>
+        <td>ERPNext + n8n 完胜</td>
+      </tr>
+      <tr>
+        <td>💸 成本</td>
+        <td>ERPNext 免费，GovReports STP ~$13/月，Beam ~$0</td>
+        <td>Xero Payroll ~$65/月起（按员工数增加）</td>
+        <td>ERPNext 成本仅约 1/5–1/10</td>
+      </tr>
+      <tr>
+        <td>🔧 灵活度</td>
+        <td>无限自定义</td>
+        <td>封闭系统</td>
+        <td>ERPNext 完胜</td>
+      </tr>
+      <tr>
+        <td>🧑‍💼 上手难度</td>
+        <td>需要一点配置（你完全能搞定）</td>
+        <td>开箱即用</td>
+        <td>对小白 Xero 更友好，对你 ERPNext 更强大</td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<p>&nbsp;</p>
+<figure class="table">
+  <table>
+    <thead>
+      <tr>
+        <th><strong>任务</strong></th>
+        <th><strong>自动化方案（n8n）</strong></th>
+        <th><strong>实现难度</strong></th>
+        <th><strong>备注</strong></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>ERPNext → GovReports STP 上传</td>
+        <td>ERPNext 每月导出 CSV → n8n 自动上传到 GovReports API</td>
+        <td>🟢 简单</td>
+        <td>GovReports 提供 REST API 接口</td>
+      </tr>
+      <tr>
+        <td>ERPNext → Beam 缴纳养老金</td>
+        <td>n8n 定时任务抓取 Super 数据 → 提交到 Beam Employer API</td>
+        <td>🟠 中等</td>
+        <td>需注册 Beam API Key</td>
+      </tr>
+      <tr>
+        <td>ERPNext → 邮件 Payslip 自动发放</td>
+        <td>Payroll Entry 提交 → n8n Trigger (Webhook) → Gmail Node 自动发邮件</td>
+        <td>🟢 简单</td>
+        <td>你已经实现过类似</td>
+      </tr>
+      <tr>
+        <td>ERPNext → 银行发薪 .ABA 导出</td>
+        <td>自动生成 .ABA → 上传 SFTP / Email 通知财务</td>
+        <td>🟢 简单</td>
+        <td>文件操作节点即可</td>
+      </tr>
+      <tr>
+        <td>ERPNext → PAYG 汇总 → 自动提醒缴税</td>
+        <td>每季度定时汇总 → 生成报告 → 邮件提醒</td>
+        <td>🟢 简单</td>
+        <td>Utility + Schedule 节点即可</td>
+      </tr>
+      <tr>
+        <td>ERPNext → Google Drive 备份 + 日志报告</td>
+        <td>每次工资执行后备份 JSON 报告</td>
+        <td>🟢 简单</td>
+        <td>你之前写的备份脚本可直接用</td>
+      </tr>
+      <tr>
+        <td>ERPNext → Telegram 通知</td>
+        <td>工资计算完成、STP 上传成功、Super 已支付通知</td>
+        <td>🟢 简单</td>
+        <td>Telegram node 通知你本人</td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
