@@ -2,10 +2,91 @@
 title: erpnext
 description: 
 published: true
-date: 2025-10-13T08:51:28.776Z
+date: 2025-10-14T13:01:14.196Z
 tags: 
 editor: ckeditor
 dateCreated: 2025-10-13T08:51:28.776Z
 -->
 
-<p>erpnext</p>
+<h2>ERPnext</h2>
+<p>软件基础：</p>
+<p>python web 处理http&nbsp;</p>
+<p>node 通知看板</p>
+<p>MariaDB 数据库</p>
+<p>Redis 队列 缓存</p>
+<blockquote>
+  <h2><strong>数据的最小单位：字段（Field）</strong></h2>
+  <p>&nbsp;</p>
+  <p>&nbsp;</p>
+  <p>一个字段就是一格数据。常见类型：</p>
+  <p>&nbsp;</p>
+  <p><strong>Data</strong>（字符串）：「客户名称」</p>
+  <p><strong>Int/Float</strong>（数字）：「数量」「重量」</p>
+  <p><strong>Currency</strong>（金额）：「含税金额」</p>
+  <p><strong>Date/Datetime</strong>（日期时间）</p>
+  <p><strong>Check</strong>（勾选/布尔值）</p>
+  <p><strong>Link</strong>（外键，指向另一张表的一条记录）</p>
+  <p><strong>Select</strong>（下拉：固定选项）</p>
+  <p><strong>Table</strong>（子表，承载“多行明细”，每行又是一条“子记录”）</p>
+  <p><strong>Attach/Image</strong>（文件/图片）</p>
+  <p><strong>JSON/Code/Text</strong>（长文本/结构化文本）</p>
+</blockquote>
+<blockquote>
+  <p>你在界面上看到的每个输入框，本质都是一个 <strong>Field</strong>。</p>
+</blockquote>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2>Doctype</h2>
+<p>就是一张表的结构➕规则</p>
+<p>有哪些Field， 类型，是否必填，唯一？ 默认？ 校验规则？提交？树形？</p>
+<p>比如： customer 这个doctype 就有name phone addr 等等</p>
+<p>&nbsp;</p>
+<p><strong>Doc = 某个 DocType 的一条记录（表里的一行）</strong></p>
+<p>&nbsp;</p>
+<h2>常见doctype类型</h2>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><strong>Standard DocType（标准）</strong></p>
+<p>&nbsp;</p>
+<p>最普通的一张表。每创建一条 Doc，DB 多一行。</p>
+<p>例：Customer、Item、Sales Invoice。</p>
+<p><strong>Child Table DocType（子表）</strong></p>
+<p>&nbsp;</p>
+<p>专门用来做明细行的“表结构”。<strong>不能单独使用</strong>，只能被主表的 <strong>Table 字段</strong>引用。</p>
+<p>例：Sales Invoice Item 是 Sales Invoice 的明细行；DB 表是 tabSales Invoice Item。</p>
+<p><strong>Single DocType（单例设置）</strong></p>
+<p>&nbsp;</p>
+<p><strong>没有独立表</strong>，所有字段都放进系统的 tabSingles 表里。</p>
+<p>典型是“系统设置类”数据，如 Global Defaults、Company 设置页。</p>
+<p>这类是“一份配置，一个页面”，不是很多行。</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
