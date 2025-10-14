@@ -2,7 +2,7 @@
 title: erpnext
 description: 
 published: true
-date: 2025-10-14T13:02:47.483Z
+date: 2025-10-14T13:12:22.914Z
 tags: 
 editor: ckeditor
 dateCreated: 2025-10-13T08:51:28.776Z
@@ -61,10 +61,609 @@ dateCreated: 2025-10-13T08:51:28.776Z
 <p>这类是“一份配置，一个页面”，不是很多行。</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
+<h2><strong>🧾 ERPNext 标准业务流程一览表（完整横向版）</strong></h2>
+<figure class="table">
+  <table>
+    <thead>
+      <tr>
+        <th><strong>模块类别</strong></th>
+        <th><strong>操作流程顺序</strong></th>
+        <th><strong>Doctype（类型）</strong></th>
+        <th><strong>操作内容 / 关键字段</strong></th>
+        <th><strong>系统动作 / 自动更新</strong></th>
+        <th><strong>结果 / 输出</strong></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>采购 / 进货流程</strong></td>
+        <td>①</td>
+        <td><strong>Material Request</strong></td>
+        <td>创建物料需求，指定 Item、Qty、Warehouse</td>
+        <td>触发采购计划、可生成采购订单</td>
+        <td>记录采购需求</td>
+      </tr>
+      <tr>
+        <td>②</td>
+        <td><strong>Supplier Quotation</strong></td>
+        <td>收集供应商报价</td>
+        <td>可比较报价、链接到 Material Request</td>
+        <td>报价对比</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>③</td>
+        <td><strong>Purchase Order</strong></td>
+        <td>正式下单（供应商、物料、数量、单价）</td>
+        <td>锁定预算、生成应付账款草稿</td>
+        <td>采购订单生成</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>④</td>
+        <td><strong>Purchase Receipt</strong></td>
+        <td>仓库收货，确认数量和质量</td>
+        <td>自动更新库存数量</td>
+        <td>库存增加</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>⑤</td>
+        <td><strong>Purchase Invoice</strong></td>
+        <td>输入供应商发票信息</td>
+        <td>自动生成应付账款（Creditors）</td>
+        <td>财务入账</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>⑥</td>
+        <td><strong>Payment Entry</strong></td>
+        <td>实际支付款项</td>
+        <td>结清应付款</td>
+        <td>支付完成</td>
+        <td>&nbsp;</td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<p>&nbsp;</p>
+<figure class="table">
+  <table>
+    <thead>
+      <tr>
+        <th><strong>模块类别</strong></th>
+        <th><strong>操作流程顺序</strong></th>
+        <th><strong>Doctype（类型）</strong></th>
+        <th><strong>操作内容 / 关键字段</strong></th>
+        <th><strong>系统动作 / 自动更新</strong></th>
+        <th><strong>结果 / 输出</strong></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>销售 / 出货流程</strong></td>
+        <td>①</td>
+        <td><strong>Quotation</strong></td>
+        <td>为客户创建报价单</td>
+        <td>可复制生成 Sales Order</td>
+        <td>客户报价</td>
+      </tr>
+      <tr>
+        <td>②</td>
+        <td><strong>Sales Order</strong></td>
+        <td>客户确认下单</td>
+        <td>锁定库存数量</td>
+        <td>正式订单</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>③</td>
+        <td><strong>Delivery Note</strong></td>
+        <td>发货时创建</td>
+        <td>自动减少库存</td>
+        <td>库存减少</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>④</td>
+        <td><strong>Sales Invoice</strong></td>
+        <td>生成销售发票</td>
+        <td>自动生成应收账款（Debtors）</td>
+        <td>财务入账</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>⑤</td>
+        <td><strong>Payment Entry</strong></td>
+        <td>客户付款</td>
+        <td>结清应收账款</td>
+        <td>收款完成</td>
+        <td>&nbsp;</td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<figure class="table">
+  <table>
+    <thead>
+      <tr>
+        <th><strong>模块类别</strong></th>
+        <th><strong>操作流程顺序</strong></th>
+        <th><strong>Doctype（类型）</strong></th>
+        <th><strong>操作内容 / 关键字段</strong></th>
+        <th><strong>系统动作 / 自动更新</strong></th>
+        <th><strong>结果 / 输出</strong></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>工资 / 薪资流程</strong></td>
+        <td>①</td>
+        <td><strong>Employee</strong></td>
+        <td>创建员工档案（职位、部门、工资信息）</td>
+        <td>提供人员基础数据</td>
+        <td>员工记录</td>
+      </tr>
+      <tr>
+        <td>②</td>
+        <td><strong>Payroll Structure</strong></td>
+        <td>定义工资组成（基本工资、津贴、税、养老金等）</td>
+        <td>作为模板</td>
+        <td>工资计算模板</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>③</td>
+        <td><strong>Assignment</strong></td>
+        <td>指定员工使用哪种薪资结构</td>
+        <td>建立工资关系</td>
+        <td>员工薪资分配</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>④</td>
+        <td><strong>Salary Slip</strong></td>
+        <td>每月生成个人工资单</td>
+        <td>自动计算净工资</td>
+        <td>个人工资单</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>⑤</td>
+        <td><strong>Payroll Entry</strong></td>
+        <td>批量创建工资单并提交</td>
+        <td>自动生成会计分录（Expense/Payable）</td>
+        <td>工资总账</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>⑥</td>
+        <td><strong>Payment Entry</strong></td>
+        <td>实际发放工资</td>
+        <td>结清工资应付账款</td>
+        <td>工资发放完</td>
+        <td>&nbsp;</td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<p>&nbsp;</p>
+<figure class="table">
+  <table>
+    <thead>
+      <tr>
+        <th><strong>模块类别</strong></th>
+        <th><strong>操作流程顺序</strong></th>
+        <th><strong>Doctype（类型）</strong></th>
+        <th><strong>操作内容 / 关键字段</strong></th>
+        <th><strong>系统动作 / 自动更新</strong></th>
+        <th><strong>结果 / 输出</strong></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>资产 / 折旧流程</strong></td>
+        <td>①</td>
+        <td><strong>Purchase Invoice</strong></td>
+        <td>购买资产项目（标记为“Asset Item”）</td>
+        <td>自动生成 Asset 记录</td>
+        <td>资产入账</td>
+      </tr>
+      <tr>
+        <td>②</td>
+        <td><strong>Asset</strong></td>
+        <td>系统创建资产记录（含购入价、寿命、折旧法）</td>
+        <td>生成折旧计划</td>
+        <td>资产档案</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>③</td>
+        <td><strong>Depreciation Schedule</strong></td>
+        <td>自动计算每期折旧</td>
+        <td>定期生成 Journal Entry</td>
+        <td>折旧计划</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>④</td>
+        <td><strong>Depreciation Entry</strong></td>
+        <td>每期执行折旧</td>
+        <td>借：折旧费用；贷：累计折旧</td>
+        <td>财务折旧</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>⑤</td>
+        <td><strong>Asset Disposal / Sale</strong></td>
+        <td>报废或出售资产</td>
+        <td>计算 Gain/Loss</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<p>&nbsp;</p>
+<figure class="table">
+  <table>
+    <thead>
+      <tr>
+        <th><strong>模块类别</strong></th>
+        <th><strong>操作流程顺序</strong></th>
+        <th><strong>Doctype（类型）</strong></th>
+        <th><strong>操作内容 / 关键字段</strong></th>
+        <th><strong>系统动作 / 自动更新</strong></th>
+        <th><strong>结果 / 输出</strong></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>库存 / 仓库管理流程</strong></td>
+        <td>①</td>
+        <td><strong>Stock Entry</strong></td>
+        <td>物料移动（内部调拨/制造领料）</td>
+        <td>更新库存位置和数量</td>
+        <td>库存转移</td>
+      </tr>
+      <tr>
+        <td>②</td>
+        <td><strong>Stock Reconciliation</strong></td>
+        <td>实际盘点调整库存</td>
+        <td>修正系统库存数量</td>
+        <td>实盘一致</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>③</td>
+        <td><strong>Stock Ledger</strong></td>
+        <td>系统自动生成库存流水</td>
+        <td>每笔出入库形成记录</td>
+        <td>库存历史追踪</td>
+        <td>&nbsp;</td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<p>&nbsp;</p>
+<figure class="table">
+  <table>
+    <thead>
+      <tr>
+        <th><strong>模块类别</strong></th>
+        <th><strong>操作流程顺序</strong></th>
+        <th><strong>Doctype（类型）</strong></th>
+        <th><strong>操作内容 / 关键字段</strong></th>
+        <th><strong>系统动作 / 自动更新</strong></th>
+        <th><strong>结果 / 输出</strong></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>会计 / 财务流程</strong></td>
+        <td>①</td>
+        <td><strong>Journal Entry</strong></td>
+        <td>手工输入借贷分录</td>
+        <td>更新总账</td>
+        <td>调整账目</td>
+      </tr>
+      <tr>
+        <td>②</td>
+        <td><strong>Payment Entry</strong></td>
+        <td>自动或手动记录收款 / 付款</td>
+        <td>更新现金、应收、应付</td>
+        <td>收付款结清</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>③</td>
+        <td><strong>Bank Reconciliation</strong></td>
+        <td>匹配银行账单</td>
+        <td>确认银行余额</td>
+        <td>账实核对</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>④</td>
+        <td><strong>Financial Reports</strong></td>
+        <td>生成利润表 / 资产负债表 / 现金流</td>
+        <td>汇总财务数据</td>
+        <td>报表生成</td>
+        <td>&nbsp;</td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<p>&nbsp;</p>
+<figure class="table">
+  <table>
+    <thead>
+      <tr>
+        <th><strong>模块类别</strong></th>
+        <th><strong>操作流程顺序</strong></th>
+        <th><strong>Doctype（类型）</strong></th>
+        <th><strong>操作内容 / 关键字段</strong></th>
+        <th><strong>系统动作 / 自动更新</strong></th>
+        <th><strong>结果 / 输出</strong></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>制造 / 生产流程</strong></td>
+        <td>①</td>
+        <td><strong>BOM (Bill of Materials)</strong></td>
+        <td>定义产品结构（原料→成品）</td>
+        <td>用于生产计划</td>
+        <td>生产物料表</td>
+      </tr>
+      <tr>
+        <td>②</td>
+        <td><strong>Work Order</strong></td>
+        <td>启动生产任务</td>
+        <td>自动创建原料需求</td>
+        <td>生产任务</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>③</td>
+        <td><strong>Stock Entry (Manufacture)</strong></td>
+        <td>实际生产入库</td>
+        <td>扣原料，加成品</td>
+        <td>库存更新</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>④</td>
+        <td><strong>Production Plan</strong></td>
+        <td>多工单集中管理</td>
+        <td>分配资源、工序</td>
+        <td>生产排程</td>
+        <td>&nbsp;</td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<p><br>&nbsp;</p>
+<figure class="table">
+  <table>
+    <thead>
+      <tr>
+        <th><strong>模块类别</strong></th>
+        <th><strong>操作流程顺序</strong></th>
+        <th><strong>Doctype（类型）</strong></th>
+        <th><strong>操作内容 / 关键字段</strong></th>
+        <th><strong>系统动作 / 自动更新</strong></th>
+        <th><strong>结果 / 输出</strong></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>项目 / 工时流程</strong></td>
+        <td>①</td>
+        <td><strong>Project</strong></td>
+        <td>创建项目</td>
+        <td>包含任务、预算</td>
+        <td>项目框架</td>
+      </tr>
+      <tr>
+        <td>②</td>
+        <td><strong>Task</strong></td>
+        <td>定义任务节点</td>
+        <td>可指派员工</td>
+        <td>工作计划</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>③</td>
+        <td><strong>Timesheet</strong></td>
+        <td>员工记录工时</td>
+        <td>可自动计算工资或成本</td>
+        <td>工时记录</td>
+        <td>&nbsp;</td>
+      </tr>
+      <tr>
+        <td>④</td>
+        <td><strong>Expense Claim</strong></td>
+        <td>员工费用报销</td>
+        <td>生成付款单</td>
+        <td>报销支付</td>
+        <td>&nbsp;</td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
+<h1>标准操作流程</h1>
 <p>&nbsp;</p>
+<p>RPNext 的核心思想是：<strong>从计划到下单，再到收货和付款，逐步转化</strong>。</p>
+<p>&nbsp;</p>
+<p><strong>Material Request（物料需求单）</strong></p>
+<p>→ 计划部门或仓库发起需求。</p>
+<p>（告诉系统“我要买什么”）</p>
+<p><strong>Supplier Quotation（供应商报价单）</strong></p>
+<p>→ 向供应商询价（可选）。</p>
+<p><strong>Purchase Order（采购订单）</strong></p>
+<p>→ 确认要采购，正式下单。</p>
+<p>✅ 关键字段：Supplier、Item、Qty、Rate、Company。</p>
+<p><strong>Purchase Receipt（采购收货单）</strong></p>
+<p>→ 仓库收货时录入。</p>
+<p>✅ 自动更新库存数量。</p>
+<p>📦 一般来自 Purchase Order。</p>
+<p><strong>Purchase Invoice（采购发票）</strong></p>
+<p>→ 财务收到发票后创建。</p>
+<p>✅ 产生应付款（Creditors）。</p>
+<p>✅ 连接 Purchase Receipt。</p>
+<p><strong>Payment Entry（付款记录）</strong></p>
+<p>→ 向供应商付款。</p>
+<p>✅ 结清应付款。</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><strong>📦 二、销售 / 出货流程（Sales Cycle）</strong></h2>
+<p>从客户下单 → 仓库发货 → 开发票 → 收款。</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h4><strong>🔹 流程顺序：</strong></h4>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><strong>Quotation（报价单）</strong></p>
+<p>→ 给客户报价。</p>
+<p><strong>Sales Order（销售订单）</strong></p>
+<p>→ 客户确认购买。</p>
+<p>✅ 系统锁定库存。</p>
+<p><strong>Delivery Note（出货单）</strong></p>
+<p>→ 仓库发货。</p>
+<p>✅ 扣减库存数量。</p>
+<p><strong>Sales Invoice（销售发票）</strong></p>
+<p>→ 财务开票。</p>
+<p>✅ 生成应收账款（Debtors）。</p>
+<p><strong>Payment Entry（收款记录）</strong></p>
+<p>→ 收款，结清应收款。</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><strong>👷‍♀️ 三、工资 / 薪资流程（Payroll Cycle）</strong></h2>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h3><strong>🌐 关键概念</strong></h3>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>工资模块不是简单的“发钱”，而是：</p>
+<p>&nbsp;</p>
+<p><strong>Payroll Structure</strong>（薪资结构）</p>
+<p><strong>Payroll Entry</strong>（工资单汇总）</p>
+<p><strong>Salary Slip</strong>（单人工资单）</p>
+<p><strong>Assignment</strong>（分配规则）</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h3><strong>🔹 标准流程：</strong></h3>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><strong>Employee（员工）</strong></p>
+<p>→ 建立员工档案。</p>
+<p><strong>Payroll Structure（薪资结构）</strong></p>
+<p>→ 定义工资组成，比如：</p>
+<p>&nbsp;</p>
+<p>Basic（基本工资）</p>
+<p>Allowance（补贴）</p>
+<p>Tax（扣税）</p>
+<p>Superannuation（养老金）</p>
+<p><strong>Assignment（工资结构分配）</strong></p>
+<p>→ 指定哪位员工用哪种结构。</p>
+<p>（比如普通工 vs 经理）</p>
+<p><strong>Salary Slip（工资单）</strong></p>
+<p>→ 每位员工生成月度工资单。</p>
+<p>✅ 可自动计算工时、扣税、津贴。</p>
+<p><strong>Payroll Entry（工资发放汇总）</strong></p>
+<p>→ 批量生成所有员工工资单。</p>
+<p>✅ 自动记账（Debit Expense / Credit Payable）。</p>
+<p><strong>Payment Entry（发放工资）</strong></p>
+<p>→ 实际发钱。</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><strong>🧰 四、资产录入 / 折旧（Fixed Assets）</strong></h2>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h3><strong>🌐 流程逻辑</strong></h3>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>资产模块在 ERPNext 里是自动与会计账簿、折旧计划结合的。</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h4><strong>🔹 流程顺序：</strong></h4>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><strong>Purchase Invoice（采购发票）</strong></p>
+<p>→ 购入资产时选择 Asset Item。</p>
+<p>✅ 自动生成 Asset 记录。</p>
+<p><strong>Asset（资产）</strong></p>
+<p>→ 包含：</p>
+<p>&nbsp;</p>
+<p>资产编号</p>
+<p>购入日期</p>
+<p>折旧方法（Straight Line / Double Declining）</p>
+<p>折旧年限</p>
+<p><strong>Depreciation Schedule（折旧计划）</strong></p>
+<p>→ 系统自动生成。</p>
+<p><strong>Depreciation Entry（折旧分录）</strong></p>
+<p>→ 按期自动过账。</p>
+<p>✅ Debit: Depreciation Expense</p>
+<p>✅ Credit: Accumulated Depreciation</p>
+<p><strong>Asset Disposal / Sale（资产处置）</strong></p>
+<p>→ 出售或报废资产。</p>
+<p>✅ 生成 Gain/Loss。</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><strong>🧩 五、常见补充模块</strong></h2>
+<figure class="table">
+  <table>
+    <thead>
+      <tr>
+        <th><strong>模块</strong></th>
+        <th><strong>功能</strong></th>
+        <th><strong>关键 Doctype</strong></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>🏢 HR</td>
+        <td>员工、出勤、请假、薪资</td>
+        <td>Employee / Attendance / Leave Application</td>
+      </tr>
+      <tr>
+        <td>🏭 制造</td>
+        <td>BOM、工单、生产计划</td>
+        <td>BOM / Work Order / Production Plan</td>
+      </tr>
+      <tr>
+        <td>📊 会计</td>
+        <td>财务凭证、银行账户</td>
+        <td>Journal Entry / Payment Entry / Bank Account</td>
+      </tr>
+      <tr>
+        <td>🚚 仓库</td>
+        <td>库存移动、库存调整</td>
+        <td>Stock Entry / Stock Reconciliation</td>
+      </tr>
+      <tr>
+        <td>🏗️ 项目</td>
+        <td>项目、任务、成本核算</td>
+        <td>Project / Task / Timesheet</td>
+      </tr>
+      <tr>
+        <td>🧾 报表</td>
+        <td>自动生成财务报表</td>
+        <td>Balance Sheet / Profit &amp; Loss / Cash Flow</td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
