@@ -1,11 +1,20 @@
 <!--
-title: business
+title: business总体规划
 description: 
 published: true
-date: 2025-10-13T08:46:42.445Z
+date: 2025-10-14T04:11:42.669Z
 tags: 
 editor: ckeditor
 dateCreated: 2025-10-12T05:20:39.347Z
 -->
 
-<p>business</p>
+<h1>工资</h1>
+<pre><code class="language-plaintext">ERPNext（计算工资 / Payroll Calculation）
+     │
+     ├── 导出 CSV → GovReports（STP 上报 / STP Reporting）
+     │
+     ├── 导出 ABA → 银行系统（工资支付 / Wage Payment）
+     │
+     ├── 汇总 PAYG → ATO BAS（税务申报 / Tax Payment）
+     │
+     └── 导出 Super → Beam（养老金支付 / Super Contribution）</code></pre>
