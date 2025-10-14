@@ -2,13 +2,151 @@
 title: 工资发放payroll
 description: 
 published: true
-date: 2025-10-14T03:33:37.369Z
+date: 2025-10-14T04:09:04.977Z
 tags: 
 editor: ckeditor
 dateCreated: 2025-10-14T03:33:37.369Z
 -->
 
-<p>工资发放payroll的流程和ERP学习</p>
+<h1>工资发放payroll的流程和ERP学习</h1>
+<p>&nbsp;</p>
+<blockquote>
+  <p>工资计算 (ERPnext ): ERPnext 要负责计算，工资数，扣税金额，deduction 奖金，养老金，medicare的税收，等一系列计算，导出payslip，</p>
+</blockquote>
+<blockquote>
+  <p>工资上报 (STP by <strong>GovReports STP Only</strong>)：比如说一个月的所有付款工资，要导出表格进行上报，如果用专业会计软件比如xero，就需要在这个里面计算上传这样，但是如果ERP计算了，就可以CSV走专门的STP上报平台上报，价格很低</p>
+</blockquote>
+<blockquote>
+  <p>工资支付 (手动，ABA或者API): 支付工资下面表格三种方式，ABA是比较成熟快捷的一种方式&nbsp;</p>
+</blockquote>
+<blockquote>
+  <p>税款 (ATO business protal BAS business activity statement 付款，可以ipayID BPAY, banktransfer)：PAYG(pay as you go)预扣所得税，根据公司规模，扣税额度年度&lt; 25000, 三个月交一次，100w年度级别每个月扣一次</p>
+</blockquote>
+<blockquote>
+  <p>养老金：payday super 改革之后，工资7天内交super, super没有银行bsb account，是需要把钱打到一个clearing House 清算中心平台比如(beam quciksuper)，然后这个平台把钱分给员工super账户，加你单来说，beam创建账号， 他会自己扣钱，</p>
+</blockquote>
+<p>&nbsp;</p>
+<h2>澳洲企业工资发放与合规流程（Payroll Compliance Flow)</h2>
+<h2><strong>ERPNext + GovReports + Beam 模式</strong></h2>
+<p>&nbsp;</p>
+<figure class="table">
+  <table>
+    <thead>
+      <tr>
+        <th><strong>模块</strong></th>
+        <th><strong>功能说明</strong></th>
+        <th><strong>使用系统</strong></th>
+        <th><strong>操作内容</strong></th>
+        <th><strong>付款/申报周期</strong></th>
+        <th><strong>备注</strong></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>💵 <strong>工资计算 (Payroll Calculation)</strong></td>
+        <td>计算工资、奖金、津贴、税、养老金等</td>
+        <td><strong>ERPNext</strong></td>
+        <td>- 设置 Employee、Salary Structure、Tax Slab、Deduction、Allowance- 自动计算： • Gross Pay（总工资） • PAYG Withholding（代扣税） • Super (养老金缴纳金额) • Medicare Levy / Taxable Income- 生成并导出 Payslip</td>
+        <td>每个发薪周期（周/双周/月）</td>
+        <td>ERPNext = 核心工资计算引擎</td>
+      </tr>
+      <tr>
+        <td>📄 <strong>工资上报 (STP Reporting)</strong></td>
+        <td>向 ATO 上报工资与代扣税信息（合规要求）</td>
+        <td><strong>GovReports (STP Only)</strong> 或 <strong>Xero / MYOB</strong></td>
+        <td>- 从 ERPNext 导出 CSV (含 Gross、Tax、Super、TFN 等字段)- 上传到 GovReports STP 模块- 自动生成并报送 STP 文件（SAF-T XML）到 ATO</td>
+        <td>通常每月一次（或与工资周期同步）</td>
+        <td>ERPNext 算工资 → GovReports 报 STP（成本低：约 $13/月）</td>
+      </tr>
+      <tr>
+        <td>🏦 <strong>工资支付 (Wages Payment)</strong></td>
+        <td>把工资打给员工银行账户</td>
+        <td><strong>银行系统 (CBA / Westpac / ANZ)</strong> 或 ERPNext 导出的 <strong>.ABA 文件</strong></td>
+        <td>- ERPNext Payroll Entry → “Make Bank Entry” → 导出 .ABA 文件- 登录银行网银 → 上传 .ABA 文件 → 一键批量发工资</td>
+        <td>每个发薪周期</td>
+        <td>ABA = 澳洲标准银行批量转账格式</td>
+      </tr>
+      <tr>
+        <td>💰 <strong>税款缴纳 (PAYG Withholding)</strong></td>
+        <td>向 ATO 缴纳代扣所得税</td>
+        <td><strong>ATO Business Portal / GovReports BAS 模块</strong></td>
+        <td>- ERPNext / GovReports 自动汇总 PAYG 金额- 登录 ATO Portal 填写 BAS (W1/W2 栏)- 支付方式任选： • PayID • BPAY • Bank Transfer (BSB 092-009 / Acc 111999 / PRN)</td>
+        <td>依据公司规模： • 小型公司：季度缴 • 中型公司：月缴</td>
+        <td>代扣金额来自 ERPNext 薪资计算结果</td>
+      </tr>
+      <tr>
+        <td>🏦 <strong>养老金缴纳 (Super Payment)</strong></td>
+        <td>向员工 Super 基金缴纳养老金</td>
+        <td><strong>Beam / QuickSuper / GovReports Super 模块</strong></td>
+        <td>- 从 ERPNext 导出养老金数据 (Fund, USI, Member No., Amount)- 上传到 Beam（Clearing House）- Beam 从公司账户扣款 → 自动分发到员工 Super 基金</td>
+        <td>当前：季度缴2026年7月起：发薪后7天内缴 (Payday Super)</td>
+        <td>员工无 BSB/Acc，Clearing House 依据 USI 分配</td>
+      </tr>
+      <tr>
+        <td>📊 <strong>季度报表 (BAS)</strong></td>
+        <td>向 ATO 汇报整体税务活动（含 GST、PAYG）</td>
+        <td><strong>GovReports / ATO Portal</strong></td>
+        <td>- 填报并提交 BAS 表 (W1/W2, G1/G11 等)- 自动包含 PAYG withholding 数额</td>
+        <td>每季度</td>
+        <td>BAS 是包含 PAYG 的主报表</td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<p>&nbsp;</p>
+<figure class="table">
+  <table>
+    <thead>
+      <tr>
+        <th><strong>任务</strong></th>
+        <th><strong>推荐工具</strong></th>
+        <th><strong>理由</strong></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>工资计算</td>
+        <td><strong>ERPNext</strong></td>
+        <td>免费、强大、自定义公式与结构</td>
+      </tr>
+      <tr>
+        <td>STP 报送</td>
+        <td><strong>GovReports STP Only</strong></td>
+        <td>官方认证、低成本 ($13/月)、无需会计软件</td>
+      </tr>
+      <tr>
+        <td>工资支付</td>
+        <td><strong>.ABA 文件 + 银行上传</strong></td>
+        <td>一次上传，多人发薪</td>
+      </tr>
+      <tr>
+        <td>PAYG 缴纳</td>
+        <td><strong>ATO Business Portal</strong></td>
+        <td>最安全、无需第三方</td>
+      </tr>
+      <tr>
+        <td>养老金支付</td>
+        <td><strong>Beam Clearing House</strong></td>
+        <td>自动扣款 + 自动分发</td>
+      </tr>
+      <tr>
+        <td>报表申报</td>
+        <td><strong>GovReports BAS 模块</strong></td>
+        <td>与 STP 数据无缝集成</td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<pre><code class="language-plaintext">ERPNext（计算工资）
+    │
+    ├── 导出 CSV → GovReports（STP 上报）
+    │
+    ├── 导出 ABA → 银行系统（工资支付）
+    │
+    ├── 汇总 PAYG → ATO BAS（代扣税申报/付款）
+    │
+    └── 导出 Super → Beam（养老金支付）</code></pre>
+<p>&nbsp;</p>
 <p>&nbsp;</p>
 <h2><strong>📊 发工资方式对比表</strong></h2>
 <figure class="table">
