@@ -2,7 +2,7 @@
 title: 工资发放payroll
 description: 
 published: true
-date: 2025-10-14T04:27:08.346Z
+date: 2025-10-14T04:32:19.047Z
 tags: 
 editor: ckeditor
 dateCreated: 2025-10-14T03:33:37.369Z
@@ -509,6 +509,68 @@ dateCreated: 2025-10-14T03:33:37.369Z
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
+<h1>ERPnext工资操作全流程</h1>
+<p><strong>Berstra Internal SOP</strong></p>
+<p>Version 2025.10</p>
+<p>所有模块</p>
+<figure class="table" style="float:left;">
+  <table>
+    <thead>
+      <tr>
+        <th><strong>模块</strong></th>
+        <th><strong>职责</strong></th>
+        <th><strong>对应现实功能</strong></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Employee</strong></td>
+        <td>员工信息</td>
+        <td>TFN、Super、银行信息</td>
+      </tr>
+      <tr>
+        <td><strong>Salary Component</strong></td>
+        <td>工资组成项目</td>
+        <td>Basic、Allowance、Deduction、Tax</td>
+      </tr>
+      <tr>
+        <td><strong>Salary Structure</strong></td>
+        <td>工资模板</td>
+        <td>定义计算规则与税公式</td>
+      </tr>
+      <tr>
+        <td><strong>Salary Slip</strong></td>
+        <td>工资单</td>
+        <td>每位员工每月发放的工资凭证</td>
+      </tr>
+      <tr>
+        <td><strong>Payroll Entry</strong></td>
+        <td>工资发放批次</td>
+        <td>批量生成与提交工资单</td>
+      </tr>
+      <tr>
+        <td><strong>Journal Entry</strong></td>
+        <td>会计凭证</td>
+        <td>自动记录工资支出与税务负债</td>
+      </tr>
+      <tr>
+        <td><strong>Email / SMTP</strong></td>
+        <td>邮件系统</td>
+        <td>自动发送工资单 PDF</td>
+      </tr>
+      <tr>
+        <td><strong>GovReports / STP</strong></td>
+        <td>税务上报</td>
+        <td>向 ATO 提交 STP（工资申报）</td>
+      </tr>
+      <tr>
+        <td><strong>Beam / QuickSuper</strong></td>
+        <td>养老金支付</td>
+        <td>向 Super Fund 转账养老金</td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
@@ -521,16 +583,250 @@ dateCreated: 2025-10-14T03:33:37.369Z
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
+<h2><strong>工资计算与发放流程</strong></h2>
+<figure class="table">
+  <table>
+    <thead>
+      <tr>
+        <th><strong>步骤</strong></th>
+        <th><strong>操作</strong></th>
+        <th><strong>系统动作</strong></th>
+        <th><strong>说明</strong></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>① 创建员工档案</td>
+        <td>HR → Employee → New</td>
+        <td>保存银行账号、TFN、Super Fund 名称、Member ID</td>
+        <td>一次性操作</td>
+      </tr>
+      <tr>
+        <td>② 定义工资组件</td>
+        <td>Payroll → Salary Component</td>
+        <td>Basic（基本工资）、PAYG（预扣税）、Super（养老金）</td>
+        <td>PAYG 要写计算公式，一次生成就可以了</td>
+      </tr>
+      <tr>
+        <td>③ 建立工资结构</td>
+        <td>Payroll → Salary Structure</td>
+        <td>添加收入与扣除项目，选择 “AUS Income Tax - PAYG” 公式</td>
+        <td>可按职位或全员共享</td>
+      </tr>
+      <tr>
+        <td>④ 分配工资结构</td>
+        <td>Employee → Assign Salary Structure</td>
+        <td>选择对应模板</td>
+        <td>每位员工一份，工作类型主要，还有earning和deduction的概览</td>
+      </tr>
+      <tr>
+        <td>⑤ 生成工资单</td>
+        <td>Payroll Entry → New → Get Employees → Create Salary Slips</td>
+        <td>系统自动计算 PAYG、Net Pay</td>
+        <td>生成后可手动修改</td>
+      </tr>
+      <tr>
+        <td>⑥ 审核工资单</td>
+        <td>Payroll Entry → Submit Salary Slip</td>
+        <td>ERPNext 自动生成 Journal Entry</td>
+        <td>状态变为 “Submitted”</td>
+      </tr>
+      <tr>
+        <td>⑦ 发送工资单</td>
+        <td>Payroll Entry → Email Salary Slip</td>
+        <td>员工收到 PDF 邮件</td>
+        <td>
+          <p>发件人可设为 payroll@berstra.com，邮箱单独设置，</p>
+          <p>还有邮件需要完善看起来专业一点，要有gist</p>
+        </td>
+      </tr>
+      <tr>
+        <td>⑧ 导出银行文件</td>
+        <td>Payroll Entry → Download Bank Payment File (.ABA)</td>
+        <td>生成澳洲标准银行转账文件</td>
+        <td>上传至 CBA / NAB / Westpac</td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<p>&nbsp;</p>
+<h2><strong>税务与养老金 | Tax &amp; Superannuation</strong></h2>
+<figure class="table">
+  <table>
+    <thead>
+      <tr>
+        <th><strong>模块</strong></th>
+        <th><strong>内容</strong></th>
+        <th><strong>周期</strong></th>
+        <th><strong>工具</strong></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>PAYG Withholding</strong></td>
+        <td>ERPNext 自动计算税额 → 报送 ATO → 在 BAS 中缴纳</td>
+        <td>月度 / 季度</td>
+        <td>GovReports / ATO Portal</td>
+      </tr>
+      <tr>
+        <td><strong>STP（Single Touch Payroll）</strong></td>
+        <td>上传 CSV / XML 至 GovReports（或 Xero）</td>
+        <td>每次发薪后</td>
+        <td>GovReports STP-only ($13/月)</td>
+      </tr>
+      <tr>
+        <td><strong>Superannuation (养老金)</strong></td>
+        <td>ERPNext 计算 → Beam 平台转账</td>
+        <td>每次发薪后 7 天内</td>
+        <td>Beam / QuickSuper</td>
+      </tr>
+      <tr>
+        <td><strong>Medicare Levy</strong></td>
+        <td>在 PAYG 公式中自动计算</td>
+        <td>同 PAYG</td>
+        <td>ERPNext 内部公式</td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
+<h2><strong>银行打款</strong></h2>
+<figure class="table">
+  <table>
+    <tbody>
+      <tr>
+        <td>🅰️ 手动银行转账</td>
+        <td>登录 CBA 手动输入每人金额</td>
+        <td>⭐</td>
+      </tr>
+      <tr>
+        <td>🅱️ ABA 批量上传</td>
+        <td>ERPNext 导出 .ABA → 银行网页上传</td>
+        <td>⭐⭐⭐⭐⭐</td>
+      </tr>
+      <tr>
+        <td>🅾️ API 自动支付</td>
+        <td>n8n + CBA API 或 Paytron 实现</td>
+        <td>⭐⭐⭐（复杂但酷）</td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<p>&nbsp;</p>
+<h2><strong>上报与付款节奏 | Lodgement &amp; Payment Cycle</strong></h2>
+<figure class="table">
+  <table>
+    <thead>
+      <tr>
+        <th><strong>项目</strong></th>
+        <th><strong>频率</strong></th>
+        <th><strong>提交方式</strong></th>
+        <th><strong>支付途径</strong></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>STP（工资申报）</strong></td>
+        <td>每次发薪</td>
+        <td>GovReports / Xero 上传 CSV</td>
+        <td>-</td>
+      </tr>
+      <tr>
+        <td><strong>PAYG（预扣税）</strong></td>
+        <td>每月 / 季度</td>
+        <td>ATO Business Portal BAS</td>
+        <td>BPAY / PayID</td>
+      </tr>
+      <tr>
+        <td><strong>Super（养老金）</strong></td>
+        <td>发薪后 7 天内</td>
+        <td>Beam / QuickSuper</td>
+        <td>自动扣款</td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
+<h2><strong>会计分录</strong></h2>
+<figure class="table">
+  <table>
+    <tbody>
+      <tr>
+        <td>Salary Expense</td>
+        <td>✅</td>
+        <td>-</td>
+      </tr>
+      <tr>
+        <td>PAYG Payable</td>
+        <td>-</td>
+        <td>✅</td>
+      </tr>
+      <tr>
+        <td>Super Payable</td>
+        <td>-</td>
+        <td>✅</td>
+      </tr>
+      <tr>
+        <td>Payroll Payable (净工资)</td>
+        <td>-</td>
+        <td>✅</td>
+      </tr>
+      <tr>
+        <td>Bank (发放工资后)</td>
+        <td>✅</td>
+        <td>-</td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
+<h2><strong>推荐工作流 | Recommended Setup</strong></h2>
+<figure class="table">
+  <table>
+    <thead>
+      <tr>
+        <th><strong>模块</strong></th>
+        <th><strong>工具 / 平台</strong></th>
+        <th><strong>说明</strong></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>工资计算</td>
+        <td>ERPNext (GCP 自建)</td>
+        <td>自动生成工资单、税额、ABA</td>
+      </tr>
+      <tr>
+        <td>工资上报</td>
+        <td>GovReports STP Only</td>
+        <td>成本低、操作简洁</td>
+      </tr>
+      <tr>
+        <td>工资发放</td>
+        <td>ABA 文件 + CBA</td>
+        <td>一键上传</td>
+      </tr>
+      <tr>
+        <td>税务缴纳</td>
+        <td>ATO Business Portal</td>
+        <td>PAYG + GST</td>
+      </tr>
+      <tr>
+        <td>养老金</td>
+        <td>Beam Clearing House</td>
+        <td>自动转账</td>
+      </tr>
+      <tr>
+        <td>备份与监控</td>
+        <td>GCP Snapshot + Google Drive</td>
+        <td>双重保险</td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
