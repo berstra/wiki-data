@@ -1,0 +1,296 @@
+<!--
+title: 工资发放payroll
+description: 
+published: true
+date: 2025-10-14T03:33:37.369Z
+tags: 
+editor: ckeditor
+dateCreated: 2025-10-14T03:33:37.369Z
+-->
+
+<p>工资发放payroll的流程和ERP学习</p>
+<p>&nbsp;</p>
+<h2><strong>📊 发工资方式对比表</strong></h2>
+<figure class="table">
+  <table>
+    <thead>
+      <tr>
+        <th><strong>方式</strong></th>
+        <th><strong>优点</strong></th>
+        <th><strong>缺点 / 限制</strong></th>
+        <th><strong>适用场景</strong></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>手动转账</strong></td>
+        <td>简单、无需技术</td>
+        <td>人工操作繁琐、易出错</td>
+        <td>公司员工少、信任小团队</td>
+      </tr>
+      <tr>
+        <td><strong>ABA 批量文件导入</strong></td>
+        <td>批量转账、一键上传银行</td>
+        <td>需要银行支持、ERPNext 要能导出</td>
+        <td>中小型澳洲公司常用方式</td>
+      </tr>
+      <tr>
+        <td><strong>银行 API / 自动打款</strong></td>
+        <td>完全自动，从系统提交到银行</td>
+        <td>技术实现复杂、银行审批/安全要求高</td>
+        <td>高自动化要求、大规模支付</td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<p>&nbsp;</p>
+<h2><strong>澳洲常见做法 &amp; 比例（基于行业习惯与案例）</strong></h2>
+<p>&nbsp;</p>
+<figure class="table">
+  <table>
+    <thead>
+      <tr>
+        <th><strong>公司规模 /类型</strong></th>
+        <th><strong>常用方式</strong></th>
+        <th><strong>百分比估算</strong></th>
+        <th><strong>说明</strong></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>小型创业公司（&lt;10 人）</td>
+        <td>手动转账</td>
+        <td>~60–70%</td>
+        <td>人少，直接操作最灵活</td>
+      </tr>
+      <tr>
+        <td>中小型公司（10–100 人）</td>
+        <td>ABA 批量上传</td>
+        <td>~25–35%</td>
+        <td>效率高、兼容银行批量导入</td>
+      </tr>
+      <tr>
+        <td>大型公司 / 平台型支付</td>
+        <td>银行 API / 集成打款</td>
+        <td>~5–10%</td>
+        <td>高频、大额支付才值得做 API 自动</td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><strong>🇦🇺 澳洲公司报 STP 的 5 种方式（2025版）</strong></h2>
+<figure class="table">
+  <table>
+    <thead>
+      <tr>
+        <th><strong>方式</strong></th>
+        <th><strong>是否合法</strong></th>
+        <th><strong>费用结构</strong></th>
+        <th><strong>特点 / 适合人群</strong></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>🅰️ <strong>ATO Business Portal 手动报送</strong></td>
+        <td>✅ 有限制</td>
+        <td>免费</td>
+        <td>小于 4 名员工的小微企业可申请豁免 STP（需批准），否则不建议长期使用。</td>
+      </tr>
+      <tr>
+        <td>🅱️ <strong>免费 STP 软件（ATO 注册的免费 DSP）</strong></td>
+        <td>✅ 完全合法</td>
+        <td>免费</td>
+        <td>最便宜的方式，适合小型公司或个体户。</td>
+      </tr>
+      <tr>
+        <td>🅲️ <strong>低价云服务（如 Payroller / KeyPay / EmploymentHero Basic）</strong></td>
+        <td>✅ 合法</td>
+        <td>~$10–$30/月，总价</td>
+        <td>最常见方案，自动报 STP + Super 缴纳，一键操作。</td>
+      </tr>
+      <tr>
+        <td>🅳️ <strong>Xero Payroll-only 计划</strong></td>
+        <td>✅ 合法</td>
+        <td>~$13/月起 + 每员工 $2.50/月</td>
+        <td>专业系统、ATO 自动对接，但贵在“人头计费”。</td>
+      </tr>
+      <tr>
+        <td>🅴️ <strong>会计事务所代报 STP</strong></td>
+        <td>✅ 合法</td>
+        <td>~$100–$300/月</td>
+        <td>会计师帮你全做，适合完全不想管细节的公司。</td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><strong>💸 具体最便宜的几种软件（ATO 认证的免费或低价 STP 方案）</strong></h2>
+<figure class="table">
+  <table>
+    <thead>
+      <tr>
+        <th><strong>软件 / 平台</strong></th>
+        <th><strong>认证状态</strong></th>
+        <th><strong>每月费用</strong></th>
+        <th><strong>员工数限制</strong></th>
+        <th><strong>是否支持 Super 缴纳</strong></th>
+        <th><strong>备注</strong></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Payroller</strong></td>
+        <td>✅ ATO 注册</td>
+        <td>免费（1人），2–4人约$12/月</td>
+        <td>最多 4 名免费 / 低价</td>
+        <td>✅</td>
+        <td>最多人用的免费 STP 软件之一。支持直接上传到 ATO。</td>
+      </tr>
+      <tr>
+        <td><strong>Easy Payslip</strong></td>
+        <td>✅ ATO 注册</td>
+        <td>免费（1人），多员工每人$1/月</td>
+        <td>最多 10 名</td>
+        <td>✅</td>
+        <td>手机 App / 网页均可报 STP。</td>
+      </tr>
+      <tr>
+        <td><strong>E-PayDay Go</strong></td>
+        <td>✅ ATO 注册</td>
+        <td>约 $5/月起</td>
+        <td>无明显限制</td>
+        <td>✅</td>
+        <td>小微企业常用，界面古老但稳定。</td>
+      </tr>
+      <tr>
+        <td><strong>GovReports STP Only</strong></td>
+        <td>✅ 官方 STP 代理</td>
+        <td>$5/月（最多 4 人）</td>
+        <td>4 名员工以下最划算</td>
+        <td>✅</td>
+        <td>可上传 CSV，完全合规。</td>
+      </tr>
+      <tr>
+        <td><strong>Xero Payroll Only</strong></td>
+        <td>✅ 官方</td>
+        <td>$13/月 + $2.50/人</td>
+        <td>无限制</td>
+        <td>✅ Beam 平台</td>
+        <td>适合中大型企业。</td>
+      </tr>
+      <tr>
+        <td><strong>MYOB Business Lite</strong></td>
+        <td>✅ 官方</td>
+        <td>~$30/月</td>
+        <td>无限制</td>
+        <td>✅</td>
+        <td>集成度高，但比 Xero 贵。</td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><strong>✅ 你目前最划算方案（结合你 ERPNext 已经有）</strong></h2>
+<figure class="table">
+  <table>
+    <thead>
+      <tr>
+        <th><strong>项目</strong></th>
+        <th><strong>推荐方案</strong></th>
+        <th><strong>成本</strong></th>
+        <th><strong>操作说明</strong></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>工资计算</td>
+        <td>用 ERPNext（你已经有）</td>
+        <td>免费</td>
+        <td>ERPNext 生成 Salary Slip / PAYG / Super 金额</td>
+      </tr>
+      <tr>
+        <td>STP 报送</td>
+        <td>用 <strong>Payroller / GovReports STP-only</strong></td>
+        <td>免费–$5/月</td>
+        <td>ERPNext 导出 → 导入到 Payroller / GovReports</td>
+      </tr>
+      <tr>
+        <td>Super 缴纳</td>
+        <td>用 <strong>Payroller / Beam（Xero也可）</strong></td>
+        <td>内置</td>
+        <td>在 Payroller 中一键缴纳 Super</td>
+      </tr>
+      <tr>
+        <td>合规报告</td>
+        <td>ATO Business Portal 验证</td>
+        <td>免费</td>
+        <td>检查员工工资是否同步到 myGov</td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
