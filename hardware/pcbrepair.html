@@ -2,12 +2,13 @@
 title: pcbrepair
 description: 
 published: true
-date: 2025-10-15T05:32:16.771Z
+date: 2025-10-15T07:12:30.515Z
 tags: 
 editor: ckeditor
 dateCreated: 2025-10-15T05:22:53.602Z
 -->
 
+<p>&nbsp;</p>
 <p>PCB修复 bolt项目</p>
 <p>https://www.boltsonics.com/</p>
 <p><strong>Resonic Instruments / Delta Sigma Bolt </strong>挪威（或欧洲）品牌的<strong>超声螺栓张力测试系统</strong></p>
@@ -277,8 +278,99 @@ dateCreated: 2025-10-15T05:22:53.602Z
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
+<p>Question!!!!</p>
+<blockquote>
+  <p>Need to confirm whether the replacement PCB came directly from the original manufacturer (Resonic Instruments / Delta Sigma)? Need to make sure it’s a genuine board and not a third-party or reprogrammed version, because</p>
+  <p>能否确认一下这块更换的PCB是不是原厂（Resonic Instruments / Delta Sigma）直接发过来的？我想确保它是原装板，而不是第三方或改写过固件的版本。</p>
+</blockquote>
+<blockquote>
+  <p>Does the replacement PCB include the same firmware version and serial number as the original one. I’ve read that these boards sometimes store calibration and identification data in onboard memory.</p>
+  <p>这块替换的PCB上是否包含和原板相同的固件版本与序列号？我查资料发现这些板子通常在板载存储里保存校准和识别数据。</p>
+</blockquote>
+<blockquote>
+  <p>Do you know if the calibration data (for ultrasonic delay or load factor) is already preloaded on the new board, or does it need to be reloaded from the factory? If it’s not included, the readings might not match the sensor.</p>
+  <p>你知道这块新板的校准数据（比如超声延迟或载荷系数）是不是已经预加载了，还是要重新从工厂导入？如果没有校准数据，测量值可能会偏差</p>
+</blockquote>
+<blockquote>
+  <p>Just to double-check — is the control box rated for 5 V DC input only? The previous one was reportedly damaged by a 12 V power supply.</p>
+  <p>再确认一下，这个控制盒的额定输入电压是 5 V DC 吗？我听说之前那块就是因为插了 12 V 电源烧掉的</p>
+</blockquote>
+<blockquote>
+  <p>Once I get both the damaged and the replacement boards, I’ll inspect the power regulation section and compare the circuit paths. I’ll also check if the EEPROM or flash chip is socketed, so we could transfer calibration data if needed.</p>
+  <p>等我拿到坏板和新板后，我会重点检查电源稳压部分并比对电路走线。如果EEPROM或闪存芯片是插座式的，我也可以把校准数据转过去</p>
+</blockquote>
 <p>&nbsp;</p>
+<p>原来的接法：</p>
+<p>&nbsp;插座(+) ───────────→ 主板(+)</p>
+<p>&nbsp;插座(-) ───────────→ 主板(-)</p>
 <p>&nbsp;</p>
+<p>改成：</p>
+<p>&nbsp;插座(+) ──F1──D1──→ 主板(+)</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; │</p>
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; └──D2→主板(-)</p>
+<p>&nbsp;</p>
+<figure class="table">
+  <table>
+    <thead>
+      <tr>
+        <th><strong>件</strong></th>
+        <th><strong>型号</strong></th>
+        <th><strong>封装</strong></th>
+        <th><strong>参数</strong></th>
+        <th><strong>淘宝关键词</strong></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>F1</td>
+        <td>1206 快断保险丝 0.5A</td>
+        <td>SMD</td>
+        <td>0.5A / 32V</td>
+        <td>“贴片保险丝 1206 0.5A 快断”</td>
+      </tr>
+      <tr>
+        <td>D1</td>
+        <td>SS14 / SS24</td>
+        <td>SMA</td>
+        <td>1A~2A / 40V</td>
+        <td>“肖特基 SS14 二极管”</td>
+      </tr>
+      <tr>
+        <td>D2</td>
+        <td>SMBJ5.0A</td>
+        <td>SMB</td>
+        <td>5V 钳位 6.4V</td>
+        <td>“TVS 管 SMBJ5.0A”</td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<figure class="table">
+  <table>
+    <tbody>
+      <tr>
+        <td>F1</td>
+        <td>过流保护</td>
+        <td>电流过大时熔断</td>
+      </tr>
+      <tr>
+        <td>D1</td>
+        <td>防反极、防误接</td>
+        <td>防止插反，压降小</td>
+      </tr>
+      <tr>
+        <td>D2</td>
+        <td>吸收浪涌、钳压</td>
+        <td>防止 12V 冲击烧板</td>
+      </tr>
+      <tr>
+        <td>整体结果</td>
+        <td>任意错误供电时</td>
+        <td>最多烧保险丝，不烧主板</td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
