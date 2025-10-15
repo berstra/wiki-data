@@ -2,13 +2,14 @@
 title: pcbrepair
 description: 
 published: true
-date: 2025-10-15T05:25:09.746Z
+date: 2025-10-15T05:32:16.771Z
 tags: 
 editor: ckeditor
 dateCreated: 2025-10-15T05:22:53.602Z
 -->
 
 <p>PCB修复 bolt项目</p>
+<p>https://www.boltsonics.com/</p>
 <p><strong>Resonic Instruments / Delta Sigma Bolt </strong>挪威（或欧洲）品牌的<strong>超声螺栓张力测试系统</strong></p>
 <p>&nbsp;</p>
 <figure class="table">
@@ -73,6 +74,206 @@ dateCreated: 2025-10-15T05:22:53.602Z
 <p><strong>拍主板近照</strong>：我帮你标出电源芯片、保险、滤波、测点。</p>
 <p><strong>若整板替换</strong>：换之前确认固件序列号、校准文件是否已写入。</p>
 <p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>备份知识</p>
+<p>&nbsp;</p>
+<p>品牌</p>
+<figure class="table">
+  <table>
+    <thead>
+      <tr>
+        <th><strong>英文</strong></th>
+        <th><strong>中文 / 备注</strong></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Resonic Instruments</td>
+        <td>负责超声螺栓测力 / 应变 / 张紧仪器的公司 /专家联盟（约 75 年经验）&nbsp;</td>
+      </tr>
+      <tr>
+        <td>Delta Sigma</td>
+        <td>该型号 / 系列的超声螺栓拉伸 / 张力测量仪器&nbsp;</td>
+      </tr>
+      <tr>
+        <td>Norbar</td>
+        <td>扭矩 / 螺栓校验 /力控工具厂商，在 Delta Sigma 产品线上有代理 /合作 /销售关系&nbsp;</td>
+      </tr>
+      <tr>
+        <td>Boltsonics</td>
+        <td>在澳洲/挪威领域与 Resonic 合作 / 代理 /服务商，提供仪器、租赁、维修、培训等业务&nbsp;</td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<p>&nbsp;</p>
+<figure class="table">
+  <table>
+    <thead>
+      <tr>
+        <th><strong>英文术语</strong></th>
+        <th><strong>中文翻译</strong></th>
+        <th><strong>作用 / 说明</strong></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Ultrasonic Pulse-Echo</td>
+        <td>超声脉冲回波</td>
+        <td>仪器向螺栓头端发出超声脉冲信号，由另一端反射回来的回波时间用于测定螺栓内部长度 / 应力变化。</td>
+      </tr>
+      <tr>
+        <td>Time-of-Flight (TOF)</td>
+        <td>飞行时间 / 传播时间</td>
+        <td>信号从发射到返回的时间差，用于计算螺栓内部声速 / 伸长量。</td>
+      </tr>
+      <tr>
+        <td>Elongation / Stretch</td>
+        <td>伸长量 / 拉伸长度</td>
+        <td>螺栓因受力产生的长度增加，是计算张力 (load) 的基础。</td>
+      </tr>
+      <tr>
+        <td>Load / Bolt Load</td>
+        <td>螺栓载荷 / 张力</td>
+        <td>根据伸长与材料特性计算出的力（牛顿）</td>
+      </tr>
+      <tr>
+        <td>Stress Factor</td>
+        <td>应力系数</td>
+        <td>用于将超声参数换算为应力 / 张力的比例因子</td>
+      </tr>
+      <tr>
+        <td>Temperature Compensation</td>
+        <td>温度补偿</td>
+        <td>超声波传播速度随温度变化，仪器自动补偿这一误差</td>
+      </tr>
+      <tr>
+        <td>Transducer</td>
+        <td>换能器 / 探头</td>
+        <td>发射 / 接收超声波的探头，贴在螺栓端面上</td>
+      </tr>
+      <tr>
+        <td>Analog / Digital Signal Processing</td>
+        <td>模拟 / 数字信号处理</td>
+        <td>将收到的回波信号放大 / 处理 /采样 /计算</td>
+      </tr>
+      <tr>
+        <td>Memory / Project Data</td>
+        <td>存储 / 项目数据</td>
+        <td>仪器内部保存多个螺栓测量记录（包括回波波形、时间、温度等）</td>
+      </tr>
+      <tr>
+        <td>0-10 V Analog Output</td>
+        <td>0-10V 模拟输出</td>
+        <td>在某型号中可以将伸长 / 张力转换为 0–10V 电压输出给外部记录器</td>
+      </tr>
+      <tr>
+        <td>USB / Micro-USB 接口</td>
+        <td>USB / Micro-USB 接口</td>
+        <td>用于数据导出（CSV / Excel）或给仪器供电 / 充电</td>
+      </tr>
+      <tr>
+        <td>Lemo / BNC 接头</td>
+        <td>Lemo / BNC 连接器</td>
+        <td>用于连接换能器 / 温度探头 / I/O 接线</td>
+      </tr>
+      <tr>
+        <td>IP Rating (IP44)</td>
+        <td>防护等级 IP44</td>
+        <td>仪器具有一定防尘防水等级，适合现场使用</td>
+      </tr>
+      <tr>
+        <td>Secure Data Sector / Public Sector</td>
+        <td>安全数据区 / 公开区</td>
+        <td>仪器内部存储空间分为“受保护区域”（保存测量记录）与“公开区域”（用户可通过 USB 导出）</td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<figure class="table">
+  <table>
+    <thead>
+      <tr>
+        <th><strong>中文</strong></th>
+        <th><strong>英文</strong></th>
+        <th><strong>备注</strong></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>超声 / 超声波</td>
+        <td>Ultrasonic</td>
+        <td>用于测量飞行时间</td>
+      </tr>
+      <tr>
+        <td>脉冲-回波</td>
+        <td>Pulse-Echo</td>
+        <td>一种超声测量方式</td>
+      </tr>
+      <tr>
+        <td>飞行时间</td>
+        <td>Time-of-Flight，TOF</td>
+        <td>信号发射到返回的时间差</td>
+      </tr>
+      <tr>
+        <td>伸长 / 拉伸量</td>
+        <td>Elongation / Stretch</td>
+        <td>螺栓受力后的长度变化</td>
+      </tr>
+      <tr>
+        <td>载荷 / 张力</td>
+        <td>Load / Bolt Load</td>
+        <td>张力值（牛顿 N / 公斤力 kgf）</td>
+      </tr>
+      <tr>
+        <td>声速</td>
+        <td>Acoustic Velocity</td>
+        <td>超声波在螺栓中的传播速度</td>
+      </tr>
+      <tr>
+        <td>温度补偿</td>
+        <td>Temperature Compensation</td>
+        <td>根据温度变化调整测量结果</td>
+      </tr>
+      <tr>
+        <td>探头 / 换能器</td>
+        <td>Transducer / Probe</td>
+        <td>发射 / 接收超声信号部分</td>
+      </tr>
+      <tr>
+        <td>输出 / 模拟信号</td>
+        <td>Analog Output</td>
+        <td>如 0–10V 电压信号</td>
+      </tr>
+      <tr>
+        <td>存储 / 项目</td>
+        <td>Memory / Project Data</td>
+        <td>仪器内部文件与测量记录</td>
+      </tr>
+      <tr>
+        <td>串口 / USB 接口</td>
+        <td>USB / Serial</td>
+        <td>用于导出数据 / 固件升级</td>
+      </tr>
+      <tr>
+        <td>数字信号处理</td>
+        <td>Digital Signal Processing (DSP)</td>
+        <td>用于波形处理、峰值识别</td>
+      </tr>
+      <tr>
+        <td>显示屏 / 触摸屏</td>
+        <td>Touch Screen Display</td>
+        <td>人机界面操作部分</td>
+      </tr>
+      <tr>
+        <td>防护等级</td>
+        <td>IP Rating (如 IP44)</td>
+        <td>防尘 / 防水等级标准</td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
