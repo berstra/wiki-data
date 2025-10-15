@@ -2,12 +2,93 @@
 title: pcbrepair
 description: 
 published: true
-date: 2025-10-15T05:22:53.602Z
+date: 2025-10-15T05:25:09.746Z
 tags: 
 editor: ckeditor
 dateCreated: 2025-10-15T05:22:53.602Z
 -->
 
 <p>PCB修复 bolt项目</p>
+<p><strong>Resonic Instruments / Delta Sigma Bolt </strong>挪威（或欧洲）品牌的<strong>超声螺栓张力测试系统</strong></p>
+<p>&nbsp;</p>
+<figure class="table">
+  <table>
+    <thead>
+      <tr>
+        <th><strong>项目</strong></th>
+        <th><strong>含义</strong></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Bolt Type</td>
+        <td>螺栓规格（M30）</td>
+      </tr>
+      <tr>
+        <td>Stress Fac</td>
+        <td>应力系数，材料特性参数</td>
+      </tr>
+      <tr>
+        <td>Temp Fac</td>
+        <td>温度补偿系数（声速与温度相关）</td>
+      </tr>
+      <tr>
+        <td>Load Fac</td>
+        <td>力校正系数，N/0.1 mm 表示张力变化与伸长的比例</td>
+      </tr>
+      <tr>
+        <td>算法</td>
+        <td>通过声程变化计算螺栓实际张力</td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<p>&nbsp;</p>
+<p>这台控制器内部结构推测：</p>
+<p>&nbsp;</p>
+<p>锂电池模块；</p>
+<p>电源管理 + 充电电路；</p>
+<p>主板（MCU + ADC + 显示控制）；</p>
+<p>超声发射/接收放大板；</p>
+<p>显示屏模块。</p>
+<p>&nbsp;</p>
+<h3><strong>🔦</strong></h3>
+<h3><strong>4️⃣ 第四张（你手里拿的金属头，绿紫面）</strong></h3>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>这其实是<strong>超声探头</strong>（换能器）。</p>
+<p>绿色部分是防护胶层，中间紫色圆片是压电晶体（可能是 PZT-5A 材料）。</p>
+<p>它通过压电效应发射/接收超声脉冲——</p>
+<p>贴在螺栓端面上，用耦合剂（油/凝胶）保证声波传导。</p>
+<p>这颗头非常贵，一般 $800–$1200 一个。</p>
+<p>所以维修时要<strong>极其注意别插错电压</strong>，这些探头一旦烧芯片放大器，就要返厂。</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><strong>🧠 你接下来的维修建议：</strong></h2>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><strong>确认供电规格</strong>：从外壳铭牌或说明书找输入电压标识（多为 5 V DC 或 USB 5 V）。</p>
+<p><strong>别急着通电</strong>：拆开控制盒，先查输入电路——看有没有保险、TVS、二极管、LDO。</p>
+<p><strong>用可调电源限流 0.3 A 试加电</strong>：从电源插口向内测，看看哪颗芯片发烫。</p>
+<p><strong>拍主板近照</strong>：我帮你标出电源芯片、保险、滤波、测点。</p>
+<p><strong>若整板替换</strong>：换之前确认固件序列号、校准文件是否已写入。</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
