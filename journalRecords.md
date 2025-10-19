@@ -2,7 +2,7 @@
 title: Journal 
 description: 
 published: true
-date: 2025-10-18T13:11:48.915Z
+date: 2025-10-19T13:55:33.172Z
 tags: 
 editor: markdown
 dateCreated: 2025-10-15T04:00:23.198Z
@@ -48,6 +48,27 @@ dateCreated: 2025-10-15T04:00:23.198Z
 
 
 
+# 📅 2025-10-19 工作日记
 
+| 时间 | 任务类别 | 具体操作 / 事件 | 工具 / 模块 | 结果 / 状态 | 备注 |
+|------|-----------|------------------|--------------|--------------|------|
+| 09:00 | ERPNext 设置 | 调整 Workspace 权限结构（Simple Stock） | ERPNext v15 | ✅ 已建立并默认给 Stock User | 用户 Tony 已测试正常 |
+| 09:45 | ERPNext 客户端脚本 | 编写 Client Script 自动聚焦扫码框、默认仓库 | ERPNext Client Script | ✅ 成功触发 | 针对 bingtaowang05 账号 |
+| 10:30 | Workspace 调整 | 修复 title 不显示、Module index 报错 | ERPNext Console | ⚙️ 调整完毕 | 新 workspace `Simple Stock` 可访问 |
+| 11:00 | Google Sheet 集成 | 设计 Google Sheet → ERPNext 同步逻辑 | Google Apps Script | 🧠 方案确定 | 准备阶段：先同步 Customer |
+| 13:30 | Console 操作 | 通过 bench console 为所有 Stock User 设默认 Workspace | ERPNext bench console | ✅ 完成 | 出现 “Warehouse wise Stock Value” 脏数据报错 |
+| 15:00 | Client Script 优化 | 新增脚本自动设置默认 “Material Issue” 类型 | ERPNext Client Script | ✅ 正常运行 | 同时检测当前登录用户条件 |
+| 16:00 | Google Sheet 集成 | 准备 Customer 同步脚本（仅创建客户） | Google Apps Script | 🚧 测试中 | 下一步：自动创建 Address |
+| 17:00 | 数据导入规划 | 分析 Google Sheet 出货记录字段映射 | Google Sheet + ERPNext | 🧩 已确定映射 | Order ID → external_id, Customer → Customer Name |
+
+---
+
+## ✅ 明日计划
+- [ ] 测试 Google Sheet → ERPNext 自动创建 Customer 功能  
+- [ ] 为每个 Customer 自动创建 Address（含地理坐标）  
+- [ ] 编写 Delivery Note 导入逻辑（带外部 ID 去重）  
+- [ ] 完成 Simple Stock Workspace 权限隔离逻辑（按角色）
+
+---
 
 
