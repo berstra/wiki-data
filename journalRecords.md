@@ -2,13 +2,56 @@
 title: Journal 
 description: 
 published: true
-date: 2025-10-19T13:55:33.172Z
+date: 2025-10-21T03:19:16.179Z
 tags: 
 editor: markdown
 dateCreated: 2025-10-15T04:00:23.198Z
 ---
 
 # Wiki Journal Recording
+
+# 🗓️ Daily Journal — 2025-10-20
+
+## 🧩 主要任务
+- 完成 **ERP 客户同步脚本** 分段执行机制（`runNextBatch()`）。
+- 加入 **批次状态消息通知函数** `sendBatchStatusMessage()`。
+- 优化 `syncCustomersToERP()` 返回值，增加成功数量统计。
+- 修复 ERP 地址创建错误（缺失 city 字段导致的 `MandatoryError`），添加城市兜底逻辑。
+- 维护 Google Apps Script 触发器，实现自动批次执行。
+
+---
+
+## ⚙️ 技术改进
+| 模块 | 改进内容 | 说明 |
+|------|-----------|------|
+| `syncCustomersToERP()` | 增加返回 `success` 数量 | 用于 `runNextBatch` 统计同步成功数量 |
+| `fillAllAddressDetails()` | 检查 AI 列已有地址则跳过 | 节省 Google Maps API 调用 |
+| `runNextBatch()` | 自动推进指针、锁定防并发 | 避免多触发器重复执行 |
+| `sendBatchStatusMessage()` | 新增 Chat 通知功能 | 自动汇报当前批次执行情况（含客户、时间等） |
+
+---
+
+## 📊 执行结果
+- 每批处理行数：`BATCH_SIZE = 50`
+- 昨日累计同步客户：约 **350**
+- 成功率：约 **98%**
+- 主要错误类型：`MandatoryError: city`（已修复）
+
+---
+
+## 🕒 明日计划
+- 测试触发器连续运行稳定性（确认不会重叠执行）。
+- 在 `sendBatchStatusMessage()` 中加入执行耗时统计。
+- 新增日志记录 Sheet，保存每批次运行记录。
+- 准备自动化 ERP 数据备份至 Google Drive。
+
+---
+
+## 💬 备注
+> 当前脚本运行稳定，可实现全自动同步。
+> 建议进一步优化异常捕获、API 限速与定时间隔，以支持超过 5000 行客户数据的持续运行。
+
+
 
 
 
