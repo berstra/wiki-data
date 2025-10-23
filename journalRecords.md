@@ -2,13 +2,152 @@
 title: Journal 
 description: 
 published: true
-date: 2025-10-21T03:19:16.179Z
+date: 2025-10-23T11:48:54.973Z
 tags: 
 editor: markdown
 dateCreated: 2025-10-15T04:00:23.198Z
 ---
 
 # Wiki Journal Recording
+
+# 🧾 Berstra 部署日志（系统日记）
+**日期：2025-10-23 (UTC)**
+
+> 本文为纯 Markdown 内容，直接保存为 `2025-10-23-system-report.md` 即可。
+
+---
+
+## 1) 今日概览（Summary）
+- ✅ **MariaDB 10.6** 初始化并正常运行，完成 `dbadmin` 与 `erpnext` 账号/库权限。
+- ✅ **ERPNext v15**（Frappe v15）在本机部署完成，可通过 **Cloudflare Tunnel** + **Nginx** 外网访问。
+- ✅ Bench 站点：`erpnext.berstra.com` 创建并完成 **ERPNext / HRMS / Insights / Payments / Print Designer / POSAwesome** 安装与迁移。
+- ✅ **Supervisor** 常驻进程：web、workers、redis（cache/queue）全部 RUNNING。
+- ✅ **Nginx** 反代并修复 **/assets** 404/403 问题，静态资源加载正常（CSS 恢复）。
+- ✅ **Cloudflared** 常驻运行，域名与服务映射生效（SSH、ERPNext、Nextcloud、Rocket.Chat 等）。
+- ✅ **多应用 Docker 化**：Rocket.Chat、Nextcloud、n8n、Uptime Kuma、Appsmith、Wiki.js、WordPress 已启动并映射到域名。
+- ✅ **系统时间** 校正到 UTC；NTP 同步正常。
+
+---
+
+## 2) 基础环境
+- 发行版：Ubuntu 22.04
+- 重要路径：
+  - Bench 根目录：`/home/frappe/frappe-bench`
+  - 站点目录：`/home/frappe/frappe-bench/sites/erpnext.berstra.com`
+  - 静态总目录：`/home/frappe/frappe-bench/sites/assets`（Nginx `alias` 指向）
+  - Supervisor 配置链接：`/etc/supervisor/conf.d/frappe-bench.conf -> ~/frappe-bench/config/supervisor.conf`
+  - Nginx 配置：`/etc/nginx/conf.d/frappe-bench.conf`（由 `bench setup nginx` 生成后调整）
+  - Cloudflared：`/etc/cloudflared/config.yml`
+
+---
+
+## 3) 数据库（MariaDB 10.6）
+- 运行目录：`/run/mysqld`（归属 `mysql`）
+- 数据目录：`/var/lib/mysql`（归属 `mysql`）
+- 账号与权限（摘要）：
+  - `dbadmin@localhost` / `dbadmin@127.0.0.1` — 全局管理
+  - `erpnext@localhost` / `erpnext@127.0.0.1` — `erpnext` 库全权限
+- 验证：
+  - `mysql -udbadmin -p -h127.0.0.1 -e "SELECT VERSION();"`
+  - `mysql -uerpnext -p -h127.0.0.1 erpnext -e "SELECT 1;"`
+
+---
+
+## 4) ERPNext/Frappe
+- **已安装应用与版本**（`bench --site erpnext.berstra.com list-apps`）  
+  - `frappe 15.86.0 (version-15)`  
+  - `erpnext 15.84.0 (version-15)`  
+  - `hrms 16.0.0-dev (develop)`  
+  - `insights 3.0.26 (develop)`  
+  - `payments 0.0.1 (develop)`  
+  - `print_designer 1.x.x-develop (develop)`  
+  - `posawesome 15.9.2 (develop)`
+
+- **站点**：`erpnext.berstra.com`（数据库：`erpnext`）  
+- **静态资源修复要点**：
+  - `sites/erpnext.berstra.com/public/assets -> ../../assets`（软链）
+  - **Nginx** 使用：
+    ```nginx
+    location /assets/ {
+        alias /home/frappe/frappe-bench/sites/assets/;
+        add_header Cache-Control "public, max-age=31536000";
+    }
+    ```
+  - 目录权限：`chmod -R 755 ~/frappe-bench/sites{,/assets}`  
+    （必要时对 `www-data` 添加读权限）
+  - 重新构建静态：
+    ```bash
+    bench build --app frappe
+    bench build --app erpnext
+    bench --site erpnext.berstra.com clear-cache
+    bench --site erpnext.berstra.com clear-website-cache
+    sudo supervisorctl restart 'frappe-bench-web:'
+    ```
+
+- **进程与常驻**（Supervisor）：
+  - 组：`frappe-bench-redis`、`frappe-bench-web`、`frappe-bench-workers`
+  - 全部 `RUNNING`，端口：
+    - Redis Cache: `127.0.0.1:13000`
+    - Redis Queue: `127.0.0.1:11000`
+    - Gunicorn/Web: 由 Nginx 反代
+  - 常用命令：
+    ```bash
+    sudo supervisorctl status
+    sudo supervisorctl restart 'frappe-bench-web:'
+    sudo supervisorctl restart 'frappe-bench-workers:'
+    sudo supervisorctl restart 'frappe-bench-redis:'
+    ```
+
+---
+
+## 5) 反向代理（Nginx）
+- 主配置：`/etc/nginx/nginx.conf`
+- Bench 站点配置：`/etc/nginx/conf.d/frappe-bench.conf`
+- 关键位置：
+  - `/` 转发至 Frappe Web（gunicorn）
+  - `/assets/` 使用 `alias` 指向 `sites/assets/`（解决 404/403）
+- 校验与重载：
+  ```bash
+  sudo nginx -t && sudo systemctl reload nginx
+
+
+
+
+# ERPNext
+cd ~/frappe-bench && . env/bin/activate
+bench --site erpnext.berstra.com list-apps
+bench build --app frappe && bench build --app erpnext
+bench --site erpnext.berstra.com clear-cache
+bench --site erpnext.berstra.com clear-website-cache
+bench migrate
+
+# Supervisor
+sudo supervisorctl status
+sudo supervisorctl restart 'frappe-bench-web:'
+sudo supervisorctl restart 'frappe-bench-workers:'
+
+# Nginx
+sudo nginx -t && sudo systemctl reload nginx
+
+# Cloudflare Tunnel
+sudo systemctl status cloudflared
+sudo systemctl restart cloudflared
+
+# Docker
+docker ps --format "table {{.Names}}\t{{.Status}}\t{{.Ports}}"
+docker compose up -d
+docker compose logs -f
+
+# 磁盘空间与资源
+df -h
+lsblk
+free -h
+htop
+
+
+
+
+
 
 # 🗓️ Daily Journal — 2025-10-20
 
