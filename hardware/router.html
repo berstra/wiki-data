@@ -1,0 +1,213 @@
+<!--
+title: 路由器
+description: 
+published: true
+date: 2025-10-24T08:52:21.756Z
+tags: 
+editor: ckeditor
+dateCreated: 2025-10-24T08:52:21.756Z
+-->
+
+<p>路由器</p>
+<p>&nbsp;</p>
+<p>你观察得非常仔细 👍</p>
+<p>你说的这个设备 <strong>RouterBOARD 951Ui-2HnD</strong> 是 <strong>MikroTik（米可替克）</strong> 生产的一台企业/ISP 级 <strong>无线路由器</strong>，经常被用于公寓、宿舍或中小企业网络中。</p>
+<p>下面我给你详细解释你看到的灯、接口和标志都代表什么意思 👇</p>
+<p>&nbsp;</p>
+<h2><strong>🧩 一、设备总览：MikroTik RouterBOARD 951Ui-2HnD</strong></h2>
+<p>&nbsp;</p>
+<hr>
+<figure class="table">
+  <table>
+    <thead>
+      <tr>
+        <th><strong>项目</strong></th>
+        <th><strong>说明</strong></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>品牌 / 型号</strong></td>
+        <td>MikroTik RouterBOARD 951Ui-2HnD</td>
+      </tr>
+      <tr>
+        <td><strong>类型</strong></td>
+        <td>企业级路由器（带 5 个千兆以太网口 + Wi-Fi）</td>
+      </tr>
+      <tr>
+        <td><strong>CPU / 内存</strong></td>
+        <td>Atheros 600 MHz / 128 MB RAM</td>
+      </tr>
+      <tr>
+        <td><strong>Wi-Fi</strong></td>
+        <td>2.4 GHz 802.11 b/g/n</td>
+      </tr>
+      <tr>
+        <td><strong>操作系统</strong></td>
+        <td>RouterOS（MikroTik 自家的系统，可配置非常复杂）</td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><strong>💡 二、LED 灯的含义</strong></h2>
+<figure class="table">
+  <table>
+    <thead>
+      <tr>
+        <th><strong>灯标识</strong></th>
+        <th><strong>含义</strong></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>PWR</strong></td>
+        <td>Power，表示设备有电（通电指示灯）</td>
+      </tr>
+      <tr>
+        <td><strong>ACT</strong></td>
+        <td>Activity，表示系统正在运行（系统活动/闪烁时表示 CPU 正在工作）</td>
+      </tr>
+      <tr>
+        <td><strong>Ether1–Ether5</strong></td>
+        <td>每个网口都有对应 LED，亮表示有连接，闪烁表示数据正在传输</td>
+      </tr>
+      <tr>
+        <td><strong>WLAN</strong></td>
+        <td>无线状态灯（Wi-Fi 是否启用/有活动）</td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<p>👉 所以：</p>
+<p>&nbsp;</p>
+<p><strong>PWR 亮</strong> = 通电；</p>
+<p><strong>ACT 闪</strong> = 正常运行；</p>
+<p><strong>Ether 灯闪</strong> = 有数据流；</p>
+<p><strong>不亮</strong> = 没插线或端口未启用。</p>
+<figure class="table">
+  <table>
+    <thead>
+      <tr>
+        <th><strong>端口编号</strong></th>
+        <th><strong>颜色 / 位置</strong></th>
+        <th><strong>作用</strong></th>
+        <th><strong>备注</strong></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Ether1</strong></td>
+        <td>🟡 黄色</td>
+        <td><strong>WAN（上网口）</strong></td>
+        <td>连接光猫、主路由、或上级网络。这个口默认作为 <strong>Internet 输入</strong></td>
+      </tr>
+      <tr>
+        <td><strong>Ether2–Ether5</strong></td>
+        <td>🔵 蓝色</td>
+        <td><strong>LAN（局域网口）</strong></td>
+        <td>接电脑、交换机、NAS、AP 等本地设备</td>
+      </tr>
+      <tr>
+        <td><strong>电插头 logo 的 RJ-45</strong></td>
+        <td>就是黄色的 Ether1</td>
+        <td>表示该口支持 <strong>PoE IN（Power over Ethernet 供电）</strong></td>
+        <td>&nbsp;</td>
+      </tr>
+    </tbody>
+  </table>
+</figure>
+<p>&nbsp;</p>
+<h2><strong>⚙️ 四、关于那个“电插头”小图标</strong></h2>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>这点非常关键 👇</p>
+<p>&nbsp;</p>
+<blockquote>
+  <p>🔌 <strong>电插头符号 = 支持 PoE（以太网供电）</strong></p>
+</blockquote>
+<p>&nbsp;</p>
+<p>在 MikroTik 的设计里：</p>
+<p>&nbsp;</p>
+<p>黄色的 <strong>Ether1（WAN 口）</strong> 可以通过 <strong>PoE 方式给路由器供电</strong>，即：</p>
+<p>你可以用网线从 PoE 交换机或 PoE 注入器供电，不用单独插电源。</p>
+<p>而蓝色的 <strong>Ether5（最右边 LAN 口）</strong> 反过来还能 <strong>PoE Out（输出电力）</strong>，可以给别的设备（比如 AP）供电。</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>也就是说：</p>
+<p>这个路由器既可以 <strong>被 PoE 供电</strong>，又能 <strong>给其他设备供电</strong>。</p>
+<p>&nbsp;</p>
+<hr>
+<p>如果这是你公寓墙上/天花板上安装的路由器，可能情况如下：</p>
+<p>&nbsp;</p>
+<p>房东或物业通过 <strong>Ether1（黄色口）</strong> 接入楼宇主网（ISP 网络）；</p>
+<p>你可以用蓝色口（Ether2–Ether5）连接电脑、NAS 或另一个私有路由；</p>
+<p>Wi-Fi “RouterBOARDXXXX” 或 “MikroTik” 可能是它的无线网络；</p>
+<p>电源可能不是插电源头，而是从 PoE 交换机（楼道弱电箱）供电。</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><strong>✅ 可以自己申请吗？</strong></h2>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>是的，通常情况下你 <strong>可以</strong> 自己申请一条宽带服务，只要满足下面条件：</p>
+<p>&nbsp;</p>
+<p>你的房屋地址支持 NBN Co 网络，并且 RSP（例如 Telstra）可以为该地址提供服务。&nbsp;</p>
+<p>公寓内的网络布线或楼宇网络架构允许将你单独连接到该地址的网络端接点（比如你墙上有一个 RJ-45 插座或 NTD 接口）。</p>
+<p>物业或楼宇管理员允许并且没有被合同或协议锁定 “统一楼宇网络” 模式。</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<hr>
+<p>&nbsp;</p>
+<h2><strong>⚠️ 你需要确认的问题（给物业／网络管理员问的）</strong></h2>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><strong>楼宇网络是不是 “集中式楼宇宽带”</strong>：</p>
+<p>你说「现在用的是公寓统一定的物业的套餐网络」，这意味着物业可能已经和某个网络供给商签了统一的楼宇宽带服务。你要问：</p>
+<p>&nbsp;</p>
+<p>这种网络是不是「物业主体批量采购」的网络，每户共享一个大包？</p>
+<p>是否允许每户自己单独订购宽带？可能物业有条款禁止或限制。</p>
+<p><strong>墙上插座 / 网络端口情况</strong>：</p>
+<p>&nbsp;</p>
+<p>你墙面或入户处是否有一个标准的 NBN 接口或 RJ-45 LAN 插口？还是你当前接入的是 “物业专用网络” 插口？</p>
+<p>如果是 NBN 标准接口，就可以自己申请 RSP；如果是物业专网络端口，可能必须使用物业指定的服务。</p>
+<p><strong>技术类型与合同限制</strong>：</p>
+<p>&nbsp;</p>
+<p>你的公寓大楼连接类型是什麽？比如 NBN Co 中讲的“Fibre to the Building (FTTB)”、“Fibre to the Node (FTTN)” 等。&nbsp;</p>
+<p>如果是 FTTB / 公寓楼宇这种结构，有时楼宇网络是 “楼宇主干由物业负责”，每户只是一个分支，物业可能有统一合约。</p>
+<p><strong>账单与费用</strong>：</p>
+<p>&nbsp;</p>
+<p>如果你自己申请，费用谁承担？物业是否会向你收取额外费用？</p>
+<p>如果使用物业统一网络，你可能已包含在物业费或管理费中。</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<hr>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<h2><strong>🔍 举例说明</strong></h2>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>假设你所在的是一个 10 层公寓，物业和网络公司签了一个楼宇宽带包，每户通过墙上一个 “统一网络插口” 访问网络。这种情况下：</p>
+<p>&nbsp;</p>
+<p>物业的网络插口可能 <strong>不是</strong> NBN 的标准 “UNI-D” 接口，而是物业自己内部交换网络。</p>
+<p>若你想自己从 Telstra 申请，就需要看该插口是否直接连接 NBN 的 “墙壁盒 / NTD” 或可用申请 RSP 的接口。如果不是，你可能需要物业 “放通” 或重新布线。</p>
+<p>如果楼宇网络是封闭式（物业规定全部住户用同一个服务商），你可能无法自己从另一个服务商申请。</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<hr>
+<p>&nbsp;</p>
+<p>如果你愿意，我可以帮你 <strong>查一下你所在公寓地址</strong>在 NBN 数据库里的“可用性 / 技术类型”（FTTB / FTTP / FTTN 等），然后我们一起看你是否能单独申请宽带，并且哪家 RSP（Telstra、Optus、TPG 等）在该地址更合适。你想做这个吗？</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
