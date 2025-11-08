@@ -2,7 +2,7 @@
 title: linux命令
 description: 
 published: true
-date: 2025-11-08T05:43:45.461Z
+date: 2025-11-08T05:56:57.678Z
 tags: 
 editor: markdown
 dateCreated: 2025-11-08T04:54:40.626Z
@@ -39,11 +39,54 @@ sudo supervisorctl restart all
 
 ```
 
-
+```
 bench --site erpnext.berstra.com backup
 查看最近备份
 bench --site erpnext.berstra.com execute frappe.integrations.doctype.s3_backup_settings.s3_backup_settings.take_backups_s3
 S3手动备份
+
+ls -lh sites/erpnext.berstra.com/private/backups/
+检测每天是否重新备份看到备份文件
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
